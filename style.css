@@ -1,0 +1,15 @@
+*
+{
+	margin:0;
+	padding:0;
+	
+}
+
+body
+{
+	background:url(https://media.giphy.com/media/UIHiwyP1Vyin6/giphy.gif);
+	height:100vh;
+	background-size:cover;
+	background-position:center;
+}
+
