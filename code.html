@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Code</title>
+
+<link rel="stylesheet" href="https://opensource.keycdn.com/fontawesome/4.7.0/font-awesome.min.css">
+<style>
+  * {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body,
+html {
+  overflow: hidden
+}
+
+.editor {
+  display: inline-block
+}
+
+.editor_code textarea {
+  width: 30vw;
+  height: calc(100vh/3);
+  margin-bottom: -5px;
+  resize: none;
+  outline: 0 !important;
+  padding: 60px 10px 10px;
+  overflow-Y:scroll;
+  background:rgb(230,230,230)
+}
+
+.editor_code:before {
+  position: absolute;
+  width: calc(30vw - 30px);
+  padding: 15px 15px;
+  font-family: monospace;
+  font-size:15px;
+  background: rgb(50, 50, 50);
+  color: rgb(220, 220, 220);
+  text-transform:uppercase
+}
+
+.editor_code:nth-of-type(1):before {
+  content: "html";
+}
+
+.editor_code:nth-of-type(2):before {
+  content: "css";
+}
+
+.editor_code:nth-of-type(3):before {
+  content: "javascript";
+}
+
+.editor_code textarea:nth-of-type(1) {
+  height: calc(100vh/3 + 1px);
+}
+
+.viewer {
+  display: inline-block;
+  vertical-align: top;
+}
+
+.viewer iframe {
+  width: 70vw;
+  height: 100vh;
+  border: 0
+}
+
+.run {
+  position:fixed;
+  top:20px;
+  right:20px;
+  padding:10px;
+  border:4px solid rgba(170,170,170,0.8);
+  background:rgba(90,90,90,0.8);
+  color:white;
+  border-radius:4px;
+  cursor:pointer;
+  font-family:monospace
+}
+
+a.run {
+  text-decoration:none;
+  bottom:20px;
+  top:auto;
+}
+.c {
+  color:red;
+}
+</style>
+</head>
+<body>
+  
+<div class="editor">
+  <div class="editor_code co_html">
+    <textarea id="h">
+<h1>Giulio</h1>
+<p>
+This is text in a paragraph. 
+It can be <big>big</big> or <small>small</small>. 
+It can be <b>bold</b> or <i>italic.</i>
+</p>
+<button>Button</button>
+    </textarea>
+  </div>
+  <div class="editor_code co_css">
+    <textarea id="c">
+button {
+  background:yellow;
+}
+    </textarea>
+  </div>
+  <div class="editor_code co_js">
+    <textarea id="j">
+//We'll learn this later    
+    </textarea>
+  </div>
+</div><div class="viewer"><iframe id="iframe"></iframe></div>
+<button class="run" onclick="Run()"><big><i class="fa fa-refresh"></i> RUN</big></button>
+<script>
+  function Run() {
+  var html = document.getElementById('h').value;
+  var css = '<style>' + document.getElementById('c').value + '</style>';
+  var js = '<scr' + 'ipt>' + document.getElementById('j').value + '</scr' + 'ipt>';
+  var doc = document.getElementById('iframe').contentWindow.document;
+  doc.open();
+  doc.write(html + css + js);
+  doc.close();
+}
+</script>
+</body>
+</html>
